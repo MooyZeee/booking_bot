@@ -1,0 +1,144 @@
+import sqlite3
+
+conn = sqlite3.connect('mydatabase.db')
+cur = conn.cursor()
+
+# записывание в базу данных
+cur.execute("""
+INSERT INTO students2222(name, age, secondName, groupe, country)
+VALUES
+('Magomed', 18, 'Alaudinov', '01-02D', 'UKE'),
+('Movsar', 16, 'Tutuev', '01-02D', 'USA'),
+('Mansur', 16, 'Tutuev', '01-02D', 'USA'),
+('Igragim', 16, 'Aktulaev', '01-02D', 'FR'),
+('Magomed', 16, 'Geldabaev', '01-02D', 'RU')
+""")
+
+
+# создание базы данных
+cur.execute("""
+CREATE TABLE students
+(
+  id INTEGER PRIMARY KEY,
+  name CHAR(100),
+  age INTEGER,
+  secondName VARCHAR(100),
+  groupe TEXT,
+  country TEXT
+)
+""")
+
+# взять все
+cur.execute("""
+SELECT * FROM students2222
+""")
+
+# взять определенное что-то из базы данных
+cur.execute("""
+SELECT name, secondName, country FROM students2222
+""")
+
+# взять конкретные данные с возростом больше или равно 16 лет или можно указывать другие параметры
+cur.execute("""
+SELECT name, secondName, country, age FROM students2222 WHERE age >= 16
+""")
+
+# изменить данные для конкретного пользователя в базе данных
+cur.execute("""
+update Students2222 set age == 26 where name == 'Movsar';
+update customers set country == 'FR' where customer_id == 5;
+
+""")
+
+# обновить/изменить данные для всех пользователей
+cur.execute("""
+update Students2222 set age == 16;
+""")
+
+# как удалить всю таблицу с бд
+cur.execute("""
+drop table shippings
+""")
+
+# как удалить определенного пользователя или вещь с базы данных
+cur.execute("""
+delete from students2222 where name == 'Movsar'
+delete from orders where amount <= 300;
+""")
+
+# Вытащить данные которые находятся в кавычках (те вытащить данные с помощью in)
+cur.execute("""
+SELECT * FROM customers WHERE country in ('USA', 'UK')
+""")
+
+# Искать данные с указанного параметра с базы данных по буквам которые указываем в начале/конце/середине
+cur.execute("""
+SELECT * FROM customers WHERE first_name LIKE 'Jo%'; искать данные о имени которое начинается в Jo
+SELECT * FROM customers WHERE first_name LIKE '%Jo'; которое заканчивается на Jo
+SELECT * FROM customers WHERE first_name LIKE '%o%'; у которого в имени есть буква o
+""")
+
+# связка ключей
+cur.execute("""
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS Teacher
+    (
+    TeacherId INTEGER PRIMARY KEY,
+    Name TEXT
+    )
+    """)
+
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS Course
+        (
+        CourseId INTEGER PRIMARY KEY,
+        CourseName Text,
+        TeacherId INTEGER,
+        FOREIGN KEY (TeacherId) REFERENCES Teacher(TeacherId)
+        )
+        """)
+""")
+#
+cur.execute("""
+
+""")
+#
+cur.execute("""
+
+""")
+#
+cur.execute("""
+
+""")
+#
+cur.execute("""
+
+""")
+#
+cur.execute("""
+
+""")
+#
+cur.execute("""
+
+""")
+#
+cur.execute("""
+
+""")
+#
+cur.execute("""
+
+""")
+#
+cur.execute("""
+
+""")
+#
+cur.execute("""
+
+""")
+
+conn.commit()
+conn.close()
+
